@@ -56,8 +56,9 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (_, i) {
               NoteEntity? noteEntity = noteLoaded.notes[i];
               return GestureDetector(
-                  onTap: () =>
-                      Navigator.pushNamed(context, PageConst.updateNotePage),
+                  onTap: () => Navigator.pushNamed(
+                      context, PageConst.updateNotePage,
+                      arguments: noteEntity),
                   onLongPress: () => showDialog(
                       context: context,
                       builder: (_) => AlertDialog(

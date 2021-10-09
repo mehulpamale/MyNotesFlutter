@@ -52,8 +52,8 @@ class NoteCubit extends Cubit<NoteState> {
   Future<void> updateNote(NoteEntity noteEntity) async {
     try {
       await updateNoteUseCase.call(noteEntity);
-    } catch (_) {
-      NoteFailure();
+    } catch (e) {
+      NoteFailure(failure: e.toString());
     }
   }
 }

@@ -21,14 +21,10 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
-  @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) =>
-        di.sl<AuthCubit>()
-          ..appStarted()),
+        BlocProvider(create: (_) => di.sl<AuthCubit>()..appStarted()),
         BlocProvider(create: (_) => di.sl<UserCubit>()),
         BlocProvider(create: (_) => di.sl<NoteCubit>()),
       ],
@@ -36,6 +32,11 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          pageTransitionsTheme: PageTransitionsTheme(
+            builders: {
+              TargetPlatform.android: CupertinoPageTransitionsBuilder()
+            }
+          )
         ),
         initialRoute: '/',
         onGenerateRoute: OnGenerateRoute.route,
